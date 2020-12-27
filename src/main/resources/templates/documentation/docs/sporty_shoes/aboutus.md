@@ -20,7 +20,7 @@
 
 ## DB Dumb Details
 
-> You can download our SportyShoes DB Dumb by Clicking on this link (https://github.com/Dd141314/simplilearn_phase2_project_school_admin/tree/master/src/main/java/com/dd/schoolAdminPanel/Database)
+> You can download our SportyShoes DB Dumb by Clicking on this link (https://github.com/Dd141314/simplilearn_phase2_project_sportyshoes/blob/master/src/main/resources/ecommerce.sql)
 
 ## Next Big Release!
 

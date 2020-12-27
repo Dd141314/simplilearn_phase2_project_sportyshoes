@@ -6,7 +6,7 @@
 
             <nav id="breadcrumbs">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="/index">Home</a></li>
                     <li>My Account</li>
                 </ul>
             </nav>
@@ -24,7 +24,7 @@
             <div class="tab-content" id="tab1" style="display: none;">
                 <h3 class="headline">Login</h3><span class="line" style="margin-bottom:20px;"></span>
                 <div class="clearfix"></div>
-                <form action="#" method="post" id="login_account" class="login">
+                <form action="#" method="post" id="login_account" name= "login_account" class="login">
                     <input type="hidden" name="conditions" value="check_login">
                     <p class="form-row form-row-wide">
                         <label for="email">Email Address: <span class="required">*</span></label>
@@ -32,7 +32,7 @@
                     </p>
                     <p class="form-row form-row-wide">
                         <label for="user_password">Password: <span class="required">*</span></label>
-                        <input class="input-text" type="password" name="user_password" id="user_password" required/>
+                        <input class="input-text" type="password" name="password" id="password" required/>
                     </p>
                     <p class="form-row">
                         <input type="submit" class="button" name="login" value="Login"/>
@@ -40,7 +40,7 @@
                             <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember Me</label-->
                     </p>
                     <p class="lost_password">
-                        <a href="forgotpassword.php"><font color="green">Forgot Password?</font></a>
+                        <a href="/forgotPassword"><font color="green">Forgot Password?</font></a>
                     </p>
                 </form>
             </div>
@@ -48,14 +48,14 @@
             <div class="tab-content" id="tab2" style="display: none;">
                 <h3 class="headline">Register</h3><span class="line" style="margin-bottom:20px;"></span>
                 <div class="clearfix"></div>
-                <form method="post" class="register" id="registration_form">
+                <form method="post" class="register" id="registration_form" name="registration_form">
                     <p class="form-row form-row-wide">
                         <label for="firstname">First Name: <span class="required">*</span></label>
-                        <input type="text" class="input-text" name="firstname" id="firstname" value=""/>
+                        <input type="text" class="input-text" name="firstName" id="firstName" value=""/>
                     </p>
                     <p class="form-row form-row-wide">
                         <label for="lastname">Last Name: <span class="required">*</span></label>
-                        <input type="text" class="input-text" name="lastname" id="lastname" value=""/>
+                        <input type="text" class="input-text" name="lastName" id="lastName" value=""/>
                     </p>
                     <p class="form-row form-row-wide">
                         <label for="email">Email Address: <span class="required">*</span></label>
@@ -80,13 +80,6 @@
                     <p class="form-row form-row-wide">
                         <label for="repassword">Repeat Password: <span class="required">*</span></label>
                         <input type="password" class="input-text" name="repassword" id="repassword"/>
-                    </p>
-                    <p class="form-row">
-                        <label for="terms" class="rememberme">
-                            <input name="terms" type="checkbox" id="terms" value=""/> I agree to Pehchaan.com <a>terms
-                                of service</a></label>
-                        <label id="terms-error" class="error" for="terms" style="display: none">Please accept our
-                            policy</label>
                     </p>
                     <p class="form-row">
                         <input type="submit" class="button" name="register" value="Register"/>

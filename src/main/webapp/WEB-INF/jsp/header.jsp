@@ -54,6 +54,7 @@
                         <ul class="top-bar-menu">
                             <li><i class="fa fa-phone"></i> +91 9092900277</li>
                             <li><i class="fa fa-envelope"></i> <a href="#">dd141096@gmail.com</a></li>
+							<li><i class="fa fa-file-pdf-o"></i> <a href="home.html">User Manual</a></li>
                         </ul>
                     </div>
 
@@ -86,8 +87,18 @@
                         <ul>
 
                                 <li><a href="#">My Account</a></li>
-                                <li class="login_show">ADMIN</li>
-                                <li><a href="#">Logout</a></li>
+                                <% try { 
+                                	if (session.getAttribute("USER_NAME") == null || session.getAttribute("USER_NAME").toString().equals("")) { %>
+                                		<li class="login_show">ADMIN</li>
+                                		<input style= "display:none" type="text" id="logInUserId" name="logInUserId" value= 0>
+                                <%   } else { %>
+                               			<li class="login_show"><%= session.getAttribute("USER_NAME")%></li>
+                               			<input style= "display:none" type="text" id="logInUserId" name="logInUserId" value= <%= session.getAttribute("USER_ID")%>>
+                               	<%   } 		
+                                 } catch (Exception e) {
+                                	 
+                                 } %>
+                                <li><a href="/logOut">Logout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -99,15 +110,23 @@
                     <div id="cart">
                         <!-- Button -->
                         <div class="cart-btn">
-                                <a href="#" class="button adc" id="basket">Cart</a>
+                         	<% try { 
+                                	if (session.getAttribute("USER_NAME") == null || session.getAttribute("USER_NAME").toString().equals("")) { %> 
+                                		<a href="#" class="button adc" id="basket">0 Item</a>
+                                <%   } else { %>
+                                		<a href="/cart" class="button adc" id="basket">0 Item</a>
+                               	<%   } 		
+                                 } catch (Exception e) {
+                                	 
+                                 } %>
                         </div>
                     </div>
 
-                    <!-- Search -->
+                    <!-- Search
                     <nav class="top-search"">
                         <button id="searchButton" onclick="search_Action();"><i class="fa fa-search"></i></button>
                         <input class="search-field"  id="search-field" type="text" placeholder="Search" value=""/>
-                    </nav>
+                    </nav>  -->
 
                 </div>
 
@@ -127,9 +146,6 @@
                             <li><a href="#" class="current homepage" id="current">Home</a></li>
                             <li class="dropdown">
                                 <a href="#">Products</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">Contact</a>
                             </li>
                         </ul>
                     </nav>

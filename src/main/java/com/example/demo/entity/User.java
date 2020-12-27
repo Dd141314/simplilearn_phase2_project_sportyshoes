@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Repository;
+
+@Repository
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 	
     @Id
@@ -32,8 +35,7 @@ public class User {
     	
     }
 	
-    public User(String firstName, String lastName, String email, String phone, String gender, String password,
-			String status) {
+    public User(String firstName, String lastName, String email, String phone, String gender, String password) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -41,7 +43,6 @@ public class User {
 		this.phone = phone;
 		this.gender = gender;
 		this.password = password;
-		this.status = status;
 	}
 
 	public int getUsersId() {
@@ -72,9 +73,6 @@ public class User {
 		return password;
 	}
 
-	public String getStatus() {
-		return status;
-	}
 
 	public void setUsersId(int usersId) {
 		this.usersId = usersId;
@@ -104,14 +102,9 @@ public class User {
 		this.password = password;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
 
 	@Column(name = "password")
     private String password;
 	
-    @Column(name = "status")
-    private String status;
 
 }

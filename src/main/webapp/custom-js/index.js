@@ -45,19 +45,19 @@ $(document).ready(function() {
                 required: true,
                 email: true
             },
-            user_password: "required"
+            password: "required"
         },
         messages: {
-            user_password: "Please your password",
+            password: "Please your password",
             email: "Please enter a valid email address",
         },
         submitHandler: function(form) {
             $.ajax({
                 type: "POST",
-                url: "api/account_ajax.php",
+                url: "/loginUser",
                 data: $('#login_account').serialize(),
                 success: function(data) {
-                    if (data == 'true') {
+                    if (data[0].success == "true") {
                         $("#snackbar_all").append('Account Successfully Logged');
                         var x = document.getElementById("snackbar_all")
                         x.className = "show";
@@ -67,12 +67,10 @@ $(document).ready(function() {
                         setTimeout(function() {
                             $("#snackbar_all").empty();
                             $("#reset").click();
-                            window.location.href = "products.php";
+                            window.location.href = "/products";
                         }, 4000);
-                        //alert('Account Successfully Created');
-                    }
-                    if (data == 'false') {
-                        $("#snackbar_all").append('Email/Password is invalid');
+                    } else {
+                        $("#snackbar_all").append(data[0].message);
                         var x = document.getElementById("snackbar_all")
                         x.className = "show";
                         setTimeout(function() {
@@ -81,13 +79,9 @@ $(document).ready(function() {
                         setTimeout(function() {
                             $("#snackbar_all").empty();
                         }, 4000);
-                        //alert('Email Already Exist');
-                        //window.location.href = "account.php";
                     }
                 },
-                beforeSend: function() {
-                    //$("#add_err").html("Loading...")
-                }
+                beforeSend: function() {}
             });
         }
     });
@@ -95,8 +89,8 @@ $(document).ready(function() {
 
     $("#registration_form").validate({
         rules: {
-            firstname: "required",
-            lastname: "required",
+            firstName: "required",
+            lastName: "required",
             gender: "required",
             phone: {
                 required: true,
@@ -110,8 +104,7 @@ $(document).ready(function() {
             },
             repassword: {
                 required: true,
-                minlength: 5,
-                equalTo: "#password"
+                minlength: 5
             },
             email: {
                 required: true,
@@ -120,8 +113,8 @@ $(document).ready(function() {
             terms: "required"
         },
         messages: {
-            firstname: "Please enter your firstname",
-            lastname: "Please enter your lastname",
+            firstName: "Please enter your firstname",
+            lastName: "Please enter your lastname",
             gender: "Please select gender",
             phone: "Please enter the valid number",
             username: {
@@ -134,8 +127,7 @@ $(document).ready(function() {
             },
             repassword: {
                 required: "Please provide a password",
-                minlength: "Your password must be at least 5 characters long",
-                equalTo: "Please enter the same password as above"
+                minlength: "Your password must be at least 5 characters long"
             },
             email: "Please enter a valid email address",
             terms: "Please accept our policy"
@@ -143,11 +135,10 @@ $(document).ready(function() {
         submitHandler: function(form) {
             $.ajax({
                 type: "POST",
-                url: "api/account_ajax.php",
-                //data: "email=" + email,
+                url: "/registerUsers",
                 data: $('#registration_form').serialize(),
                 success: function(data) {
-                    if (data == 'success') {
+                    if (data[0].success == "true") {
                         $("#snackbar_all").append('Account Successfully Created');
                         var x = document.getElementById("snackbar_all")
                         x.className = "show";
@@ -157,12 +148,11 @@ $(document).ready(function() {
                         setTimeout(function() {
                             $("#snackbar_all").empty();
                             $("#reset").click();
-                            window.location.href = "products.php";
+                            window.location.reload();
                         }, 4000);
-                        //alert('Account Successfully Created');
-                    }
-                    if (data == 'exists') {
-                        $("#snackbar_all").append('Email or phonenumber Already Exist');
+                    } else {
+
+                        $("#snackbar_all").append(data[0].message);
                         var x = document.getElementById("snackbar_all")
                         x.className = "show";
                         setTimeout(function() {
@@ -171,12 +161,10 @@ $(document).ready(function() {
                         setTimeout(function() {
                             $("#snackbar_all").empty();
                         }, 4000);
-                        //alert('Email Already Exist');
+
                     }
                 },
-                beforeSend: function() {
-                    //$("#add_err").html("Loading...")
-                }
+                beforeSend: function() {}
             });
         }
     });
